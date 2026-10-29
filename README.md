@@ -1,4 +1,4 @@
-# TerraPulse — Global Climate & Atmospheric Open Data Explorer
+# WeatherGo — Global Climate & Atmospheric Open Data Explorer
 > **GDG Web Development Pre-Interview Task**  
 > An open-access meteorological & atmospheric intelligence platform retrieving and visualizing real-time scientific data from public datasets.
 
@@ -10,15 +10,15 @@
 
 ## 🌍 Project Objective & Overview
 
-**TerraPulse** is a modern, minimalistic, and user-friendly web application created for the Google Developer Groups (GDG) Web Development interview assessment. It addresses the **Public Data Explorer** specification by integrating directly with open public scientific APIs (**Open-Meteo Weather**, **Air Quality**, and **Geocoding APIs**), which cover over 200,000+ global cities with zero required API keys and no rate-limit barriers.
+**WeatherGo** is a modern, tactile Neumorphic web application created for the Google Developer Groups (GDG) Web Development interview assessment. It addresses the **Public Data Explorer** specification by integrating directly with open public scientific APIs (**Open-Meteo Weather**, **Air Quality**, and **Geocoding APIs**), which cover over 200,000+ global cities with zero required API keys and no rate-limit barriers.
 
-The interface is engineered with a **minimalist, typography-focused design system**, curated slate color tokens, subtle glassmorphism, responsive data grids, interactive SVG trend sparklines, and a side-by-side station comparison matrix.
+The interface is engineered with a **high-fidelity Neumorphism (Soft UI) design system**, curated soft porcelain color tokens, dual-shadow tactile lighting physics, responsive data grids, interactive SVG trend sparklines, and a side-by-side station comparison matrix.
 
 ---
 
 ## 📋 Task Requirements Compliance Matrix
 
-| Requirement | Implementation in TerraPulse |
+| Requirement | Implementation in WeatherGo |
 | :--- | :--- |
 | **1. Choose a suitable public API / dataset** | Integrated **Open-Meteo Public API** suite (High-resolution weather models, atmospheric air quality indices, and geocoding). Zero keys required, 100% CORS-friendly, sub-second latency. |
 | **2. Fetch & display data dynamically** | All weather telemetry, air quality metrics (AQI, PM2.5, PM10, NO₂, O₃), 24-hour hourly projections, and 7-day extended forecasts are fetched dynamically on demand. Includes browser **Geolocation API** ("Locate Me") integration. |

@@ -1,5 +1,5 @@
 /* ==========================================================================
-   TerraPulse — Modern Minimalist Design System
+   TerraPulse — High-Fidelity Neumorphic Design System
    Variables, Typography, Theme Engine, Base Layout
    ========================================================================== */
 
@@ -11,56 +11,105 @@
   --font-heading: 'Outfit', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 
-  --radius-xs: 4px;
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 16px;
+  --radius-xs: 6px;
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 18px;
   --radius-xl: 24px;
+  --radius-2xl: 32px;
   --radius-full: 9999px;
 
-  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-normal: 240ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-fast: 160ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 260ms cubic-bezier(0.4, 0, 0.2, 1);
   --transition-bounce: 350ms cubic-bezier(0.34, 1.56, 0.64, 1);
 
   /* Status Tokens */
-  --color-good: #10b981;
-  --color-good-bg: rgba(16, 185, 129, 0.12);
-  --color-moderate: #f59e0b;
-  --color-moderate-bg: rgba(245, 158, 11, 0.12);
-  --color-unhealthy: #ef4444;
-  --color-unhealthy-bg: rgba(239, 68, 68, 0.12);
+  --color-good: #059669;
+  --color-good-bg: rgba(5, 150, 105, 0.12);
+  --color-moderate: #d97706;
+  --color-moderate-bg: rgba(217, 119, 6, 0.12);
+  --color-unhealthy: #dc2626;
+  --color-unhealthy-bg: rgba(220, 38, 38, 0.12);
   --color-info: #0284c7;
   --color-info-bg: rgba(2, 132, 199, 0.12);
-  /* Light Design System Theme */
-  --bg-app: #f8fafc;
-  --bg-surface: #ffffff;
-  --bg-card: #ffffff;
-  --bg-card-hover: #f1f5f9;
-  --bg-subtle: #f8fafc;
-  --bg-muted: rgba(15, 23, 42, 0.04);
-  --bg-input: #ffffff;
 
-  --border-subtle: #e2e8f0;
-  --border-strong: #cbd5e1;
+  /* Neumorphic Soft UI Palette — Porcelain / Cool Slate */
+  --bg-app: #e6ecf5;
+  --bg-surface: #e6ecf5;
+  --bg-card: #e6ecf5;
+  --bg-card-hover: #eaf0f8;
+  --bg-subtle: #edf3fa;
+  --bg-muted: rgba(163, 177, 198, 0.25);
+  --bg-input: #dfe6f0;
+
+  /* Neumorphic Shadows (Light Mode Dual Light Physics) */
+  --neu-flat: -6px -6px 14px rgba(255, 255, 255, 0.95), 6px 6px 14px rgba(166, 180, 200, 0.45);
+  --neu-flat-hover: -8px -8px 18px rgba(255, 255, 255, 1), 8px 8px 18px rgba(166, 180, 200, 0.65);
+  --neu-sm: -3px -3px 7px rgba(255, 255, 255, 0.95), 3px 3px 7px rgba(166, 180, 200, 0.45);
+  --neu-sm-hover: -5px -5px 11px rgba(255, 255, 255, 1), 5px 5px 11px rgba(166, 180, 200, 0.58);
+  --neu-lg: -12px -12px 28px rgba(255, 255, 255, 0.95), 12px 12px 28px rgba(166, 180, 200, 0.5);
+  --neu-inset: inset 3px 3px 6px rgba(166, 180, 200, 0.45), inset -3px -3px 6px rgba(255, 255, 255, 0.95);
+  --neu-inset-deep: inset 4px 4px 10px rgba(166, 180, 200, 0.52), inset -4px -4px 10px rgba(255, 255, 255, 0.95);
+  --neu-inset-sm: inset 2px 2px 4px rgba(166, 180, 200, 0.4), inset -2px -2px 4px rgba(255, 255, 255, 0.9);
+  --neu-pressed: inset 2px 2px 5px rgba(166, 180, 200, 0.6), inset -2px -2px 5px rgba(255, 255, 255, 0.95);
+  --neu-glow: 0 0 14px rgba(2, 132, 199, 0.35), -4px -4px 10px rgba(255, 255, 255, 0.9), 4px 4px 10px rgba(166, 180, 200, 0.45);
+
+  /* Precision Bevel Borders */
+  --border-subtle: rgba(255, 255, 255, 0.75);
+  --border-strong: rgba(188, 202, 220, 0.6);
   --border-focus: #0284c7;
+  --border-light: rgba(255, 255, 255, 0.9);
 
+  /* Modern High-Contrast Typography */
   --text-primary: #0f172a;
-  --text-secondary: #475569;
+  --text-secondary: #334155;
   --text-muted: #64748b;
   --text-inverse: #ffffff;
 
+  /* Accent Colorway */
   --accent-primary: #0284c7;
   --accent-primary-hover: #0369a1;
-  --accent-glow: rgba(2, 132, 199, 0.12);
+  --accent-glow: rgba(2, 132, 199, 0.16);
   --accent-secondary: #6366f1;
 
-  --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.05);
-  --shadow-md: 0 4px 14px rgba(15, 23, 42, 0.06);
-  --shadow-lg: 0 12px 28px rgba(15, 23, 42, 0.08);
-  --shadow-drawer: -8px 0 30px rgba(15, 23, 42, 0.12);
+  /* Backward Compatibility Shadow Aliases */
+  --shadow-sm: var(--neu-sm);
+  --shadow-md: var(--neu-flat);
+  --shadow-lg: var(--neu-lg);
+  --shadow-drawer: -14px 0 35px rgba(166, 180, 200, 0.5), inset 2px 0 4px rgba(255, 255, 255, 0.8);
 
-  --glass-bg: rgba(255, 255, 255, 0.88);
-  --glass-border: rgba(226, 232, 240, 0.9);
+  --glass-bg: rgba(230, 236, 245, 0.92);
+  --glass-border: rgba(255, 255, 255, 0.85);
+}
+
+/* Optional Neumorphic Dark Mode (Slate / Charcoal) */
+[data-theme='dark'] {
+  --bg-app: #181d24;
+  --bg-surface: #1e242d;
+  --bg-card: #1e242d;
+  --bg-card-hover: #232b35;
+  --bg-subtle: #242b36;
+  --bg-muted: rgba(255, 255, 255, 0.05);
+  --bg-input: #151a21;
+
+  --border-subtle: rgba(255, 255, 255, 0.06);
+  --border-strong: rgba(255, 255, 255, 0.12);
+  --border-light: rgba(255, 255, 255, 0.08);
+
+  --neu-flat: -5px -5px 12px rgba(255, 255, 255, 0.04), 6px 6px 14px rgba(0, 0, 0, 0.55);
+  --neu-flat-hover: -7px -7px 16px rgba(255, 255, 255, 0.06), 8px 8px 18px rgba(0, 0, 0, 0.7);
+  --neu-sm: -3px -3px 7px rgba(255, 255, 255, 0.04), 3px 3px 7px rgba(0, 0, 0, 0.5);
+  --neu-sm-hover: -4px -4px 9px rgba(255, 255, 255, 0.06), 4px 4px 9px rgba(0, 0, 0, 0.65);
+  --neu-lg: -10px -10px 24px rgba(255, 255, 255, 0.04), 12px 12px 28px rgba(0, 0, 0, 0.75);
+  --neu-inset: inset 3px 3px 6px rgba(0, 0, 0, 0.6), inset -3px -3px 6px rgba(255, 255, 255, 0.04);
+  --neu-inset-deep: inset 4px 4px 10px rgba(0, 0, 0, 0.7), inset -4px -4px 10px rgba(255, 255, 255, 0.05);
+  --neu-inset-sm: inset 2px 2px 4px rgba(0, 0, 0, 0.5), inset -2px -2px 4px rgba(255, 255, 255, 0.04);
+  --neu-pressed: inset 2px 2px 5px rgba(0, 0, 0, 0.7), inset -2px -2px 5px rgba(255, 255, 255, 0.05);
+
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --glass-bg: rgba(30, 36, 45, 0.92);
 }
 
 /* --------------------------------------------------------------------------
@@ -91,18 +140,18 @@ body {
   overflow-x: hidden;
 }
 
-/* Subtle background accent glow */
+/* Ambient light glow over soft canvas */
 body::before {
   content: '';
   position: fixed;
-  top: -150px;
-  right: -100px;
-  width: 500px;
-  height: 500px;
+  top: -120px;
+  right: -80px;
+  width: 550px;
+  height: 550px;
   background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
   pointer-events: none;
   z-index: 0;
-  opacity: 0.6;
+  opacity: 0.55;
 }
 
 /* Accessibility utility */
@@ -137,6 +186,7 @@ button {
   border: none;
   background: none;
   outline: none;
+  user-select: none;
 }
 
 button:focus-visible, input:focus-visible, select:focus-visible {
@@ -144,11 +194,19 @@ button:focus-visible, input:focus-visible, select:focus-visible {
   outline-offset: 2px;
 }
 
-/* SVG icon helper */
+/* SVG icon helper & Click Event Normalization */
 .svg-icon {
   display: inline-block;
   vertical-align: middle;
   flex-shrink: 0;
+}
+
+button svg,
+button span,
+button path,
+button polygon,
+button polyline {
+  pointer-events: none;
 }
 
 /* --------------------------------------------------------------------------
@@ -166,7 +224,7 @@ button:focus-visible, input:focus-visible, select:focus-visible {
   flex: 1;
 }
 
-/* Navbar */
+/* Neumorphic Site Header & Navbar */
 .site-header {
   position: sticky;
   top: 0;
@@ -174,143 +232,159 @@ button:focus-visible, input:focus-visible, select:focus-visible {
   background-color: var(--glass-bg);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-  border-bottom: 1px solid var(--border-subtle);
-  transition: border-color var(--transition-normal);
+  border-bottom: 1px solid var(--border-light);
+  box-shadow: 0 6px 20px -4px rgba(166, 180, 200, 0.35);
+  transition: all var(--transition-normal);
 }
 
 .navbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 68px;
+  height: 72px;
   gap: 16px;
 }
 
 .brand-wrap {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 14px;
   text-decoration: none;
   color: var(--text-primary);
+  padding: 4px 6px;
+  border-radius: var(--radius-xl);
+  transition: all var(--transition-fast);
 }
 
-.brand-icon {
-  width: 36px;
-  height: 36px;
-  border-radius: var(--radius-sm);
-  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  box-shadow: 0 2px 8px var(--accent-glow);
+.brand-logo-img {
+  height: 42px;
+  width: auto;
+  max-width: 180px;
+  display: block;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 5px rgba(166, 180, 200, 0.45));
+  transition: transform var(--transition-fast);
 }
 
-.brand-text {
-  display: flex;
-  flex-direction: column;
+.brand-wrap:hover .brand-logo-img {
+  transform: scale(1.03);
 }
 
-.brand-name {
-  font-family: var(--font-heading);
-  font-size: 1.25rem;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  display: flex;
-  align-items: center;
-  gap: 6px;
+[data-theme='dark'] .brand-logo-img {
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.35));
 }
 
 .brand-badge {
   font-size: 0.65rem;
   font-weight: 700;
-  padding: 2px 6px;
+  padding: 3px 8px;
   border-radius: var(--radius-full);
-  background: var(--bg-muted);
+  background: var(--bg-surface);
+  box-shadow: var(--neu-inset-sm);
   border: 1px solid var(--border-subtle);
-  color: var(--text-muted);
+  color: var(--accent-primary);
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
 
 .brand-sub {
-  font-size: 0.72rem;
+  font-size: 0.74rem;
   color: var(--text-muted);
+  font-weight: 500;
 }
 
-/* Nav Actions */
+/* Nav Action Buttons — Tactile Neumorphic Pills */
 .nav-actions {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
 }
 
 .btn-nav-action {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 8px 12px;
-  border-radius: var(--radius-md);
+  gap: 7px;
+  padding: 9px 16px;
+  border-radius: var(--radius-full);
   background: var(--bg-surface);
-  border: 1px solid var(--border-subtle);
+  box-shadow: var(--neu-sm);
+  border: 1px solid var(--border-light);
   color: var(--text-secondary);
   font-size: 0.85rem;
-  font-weight: 500;
+  font-weight: 600;
   transition: all var(--transition-fast);
 }
 
 .btn-nav-action:hover {
-  background: var(--bg-subtle);
+  box-shadow: var(--neu-sm-hover);
   color: var(--text-primary);
-  border-color: var(--border-strong);
+  transform: translateY(-1px);
+}
+
+.btn-nav-action:active {
+  box-shadow: var(--neu-pressed);
+  transform: translateY(0);
 }
 
 .btn-nav-action.active {
-  background: var(--accent-primary);
-  color: #fff;
-  border-color: var(--accent-primary);
+  box-shadow: var(--neu-pressed);
+  background: var(--bg-surface);
+  color: var(--accent-primary);
+  border-color: rgba(2, 132, 199, 0.4);
 }
 
 .btn-nav-icon-only {
-  width: 38px;
-  height: 38px;
+  width: 40px;
+  height: 40px;
   padding: 0;
   justify-content: center;
+  border-radius: var(--radius-full);
 }
 
 .btn-unit-toggle {
   font-family: var(--font-mono);
-  font-weight: 600;
-  font-size: 0.8rem;
-  min-width: 42px;
+  font-weight: 700;
+  font-size: 0.82rem;
+  min-width: 46px;
+  justify-content: center;
+}
+
+.btn-theme-toggle {
+  padding: 9px;
+  border-radius: var(--radius-full);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Compare floating indicator badge */
 .compare-badge-pill {
   background: var(--accent-primary);
   color: #fff;
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   font-weight: 700;
   border-radius: var(--radius-full);
-  padding: 1px 6px;
+  padding: 1px 7px;
   margin-left: 2px;
+  box-shadow: 0 2px 6px rgba(2, 132, 199, 0.4);
 }
 
 /* Main Content Area */
 .main-content {
   flex: 1;
-  padding: 24px 0 48px;
+  padding: 24px 0 52px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 24px;
 }
 
-/* Footer */
+/* Neumorphic Site Footer */
 .site-footer {
-  border-top: 1px solid var(--border-subtle);
-  padding: 24px 0;
+  border-top: 1px solid var(--border-light);
+  padding: 28px 0;
   background: var(--bg-surface);
-  font-size: 0.82rem;
+  box-shadow: 0 -6px 20px -4px rgba(166, 180, 200, 0.25);
+  font-size: 0.84rem;
   color: var(--text-muted);
 }
 
@@ -326,6 +400,7 @@ button:focus-visible, input:focus-visible, select:focus-visible {
   display: flex;
   align-items: center;
   gap: 6px;
+  font-weight: 500;
 }
 
 .footer-links {
@@ -337,7 +412,10 @@ button:focus-visible, input:focus-visible, select:focus-visible {
 .footer-link {
   color: var(--text-secondary);
   text-decoration: none;
-  transition: color var(--transition-fast);
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-fast);
 }
 
 .footer-link:hover {
@@ -357,15 +435,15 @@ button:focus-visible, input:focus-visible, select:focus-visible {
   pointer-events: auto;
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  background: var(--bg-card);
+  gap: 12px;
+  background: var(--bg-surface);
   color: var(--text-primary);
-  border: 1px solid var(--border-strong);
-  border-radius: var(--radius-md);
-  padding: 12px 18px;
-  box-shadow: var(--shadow-lg);
-  font-size: 0.85rem;
-  font-weight: 500;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-xl);
+  padding: 14px 22px;
+  box-shadow: var(--neu-lg);
+  font-size: 0.88rem;
+  font-weight: 600;
   animation: toastSlideUp 250ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
@@ -402,7 +480,7 @@ button:focus-visible, input:focus-visible, select:focus-visible {
     padding: 0 16px;
   }
   .navbar {
-    height: 60px;
+    height: 64px;
   }
   .brand-sub {
     display: none;
@@ -411,6 +489,6 @@ button:focus-visible, input:focus-visible, select:focus-visible {
     display: none;
   }
   .btn-nav-action {
-    padding: 8px;
+    padding: 9px;
   }
 }

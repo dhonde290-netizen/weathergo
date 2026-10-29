@@ -2,7 +2,7 @@
   "name": "gdg-pre-interview-task",
   "version": "1.0.0",
   "type": "module",
-  "description": "TerraPulse — Global Climate & Atmospheric Open Data Explorer",
+  "description": "WeatherGo — Global Climate & Atmospheric Open Data Explorer",
   "main": "index.js",
   "scripts": {
     "dev": "vite",

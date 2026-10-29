@@ -123,7 +123,7 @@ export function exportCitiesToCSV(cities, unit = 'C') {
   });
 
   const csv = [headers.join(','), ...rows].join('\n');
-  triggerFileDownload(csv, `terrapulse_data_${Date.now()}.csv`, 'text/csv;charset=utf-8;');
+  triggerFileDownload(csv, `weathergo_data_${Date.now()}.csv`, 'text/csv;charset=utf-8;');
 }
 
 /**
@@ -144,5 +144,5 @@ export function exportCitiesToJSON(cities) {
   }));
 
   const jsonStr = JSON.stringify(data, null, 2);
-  triggerFileDownload(jsonStr, `terrapulse_data_${Date.now()}.json`, 'application/json');
+  triggerFileDownload(jsonStr, `weathergo_data_${Date.now()}.json`, 'application/json');
 }

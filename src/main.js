@@ -12,6 +12,7 @@ import { renderCompareModal } from './components/compareModal.js';
 import { renderInfoModal } from './components/infoModal.js';
 import { renderStatsBar } from './components/statsRenderer.js';
 import { exportCitiesToCSV, exportCitiesToJSON } from './utils/formatters.js';
+import { getIconSvg } from './utils/icons.js';
 
 // DOM Elements
 const elements = {
@@ -185,11 +186,36 @@ function renderUI(state) {
 
   // Render Deep Dive Modal / Drawer
   if (state.activeModalCity) {
-    elements.modalContainerCity.innerHTML = renderCityModal(state.activeModalCity, {
-      unit: state.unit,
-      isFavorite: store.isFavorite(state.activeModalCity.id),
-      isComparing: state.compareCityIds.includes(state.activeModalCity.id)
-    });
+    const isFav = store.isFavorite(state.activeModalCity.id);
+    const isComp = state.compareCityIds.includes(state.activeModalCity.id);
+    const currentDrawer = elements.modalContainerCity.querySelector('.modal-drawer');
+    const currentCityId = elements.modalContainerCity.querySelector('[data-action="toggle-fav"]')?.getAttribute('data-id');
+
+    // Smooth in-place updates if same city drawer is open (avoids re-triggering slide animation or resetting scroll)
+    if (currentDrawer && currentCityId && String(currentCityId) === String(state.activeModalCity.id)) {
+      const favBtn = currentDrawer.querySelector('.modal-header .btn-fav');
+      if (favBtn) {
+        favBtn.classList.toggle('is-fav', isFav);
+        favBtn.title = isFav ? 'Remove from saved' : 'Save location';
+        favBtn.setAttribute('aria-label', isFav ? 'Remove from saved' : 'Save location');
+        favBtn.innerHTML = getIconSvg(isFav ? 'star-filled' : 'star', 18);
+      }
+      const compBtn = currentDrawer.querySelector('.btn-footer-secondary');
+      if (compBtn) {
+        compBtn.classList.toggle('active', isComp);
+        compBtn.setAttribute('aria-label', isComp ? 'Remove from comparison' : 'Add to comparison');
+        compBtn.innerHTML = `
+          ${getIconSvg('compare', 15)}
+          <span>${isComp ? 'Remove from Compare' : 'Add to Compare'}</span>
+        `;
+      }
+    } else {
+      elements.modalContainerCity.innerHTML = renderCityModal(state.activeModalCity, {
+        unit: state.unit,
+        isFavorite: isFav,
+        isComparing: isComp
+      });
+    }
   } else {
     elements.modalContainerCity.innerHTML = '';
   }
@@ -400,8 +426,17 @@ function setupEventListeners() {
     store.showToast('Downloaded dataset as JSON', 'success');
   });
 
-  // Delegated Actions on Cards & Tables
+  // Delegated Actions on Document & Modal Containers
   document.addEventListener('click', handleDelegatedActions);
+  if (elements.modalContainerCity) {
+    elements.modalContainerCity.addEventListener('click', handleDelegatedActions);
+  }
+  if (elements.modalContainerCompare) {
+    elements.modalContainerCompare.addEventListener('click', handleDelegatedActions);
+  }
+  if (elements.modalContainerInfo) {
+    elements.modalContainerInfo.addEventListener('click', handleDelegatedActions);
+  }
 
   // Keyboard Shortcuts
   document.addEventListener('keydown', handleKeyboardShortcuts);
@@ -556,7 +591,7 @@ function handleDelegatedActions(e) {
   }
 
   const action = target.getAttribute('data-action');
-  const cityId = target.getAttribute('data-id');
+  const cityId = target.getAttribute('data-id') || (store.getState().activeModalCity ? store.getState().activeModalCity.id : null);
 
   switch (action) {
     case 'toggle-fav':
@@ -578,14 +613,17 @@ function handleDelegatedActions(e) {
       break;
 
     case 'close-modal':
+      e.stopPropagation();
       store.closeCityModal();
       break;
 
     case 'close-compare-modal':
+      e.stopPropagation();
       store.closeCompareModal();
       break;
 
     case 'close-info-modal':
+      e.stopPropagation();
       store.closeInfoModal();
       break;
 
@@ -699,5 +737,9 @@ function setupNetworkListeners() {
   });
 }
 
-// Bootstrap application on DOM load
-document.addEventListener('DOMContentLoaded', init);
+// Bootstrap application safely regardless of document readyState
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', init);
+} else {
+  init();
+}

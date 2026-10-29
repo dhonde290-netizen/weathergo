@@ -14,7 +14,7 @@ export function renderInfoModal() {
               <span class="badge gdg-badge">GDG Web Development</span>
               <span class="badge public-data-badge">Pre-Interview Task</span>
             </div>
-            <h2 id="modal-info-title" class="modal-city-name" style="margin-top: 6px;">TerraPulse &bull; Public Data Explorer</h2>
+            <h2 id="modal-info-title" class="modal-city-name" style="margin-top: 6px;">WeatherGo &bull; Public Data Explorer</h2>
           </div>
           <button 
             type="button" 
@@ -32,7 +32,7 @@ export function renderInfoModal() {
             <section class="info-section">
               <h4>${getIconSvg('sparkles', 16)} Project Objective & Scope</h4>
               <p>
-                <strong>TerraPulse</strong> is an open-access meteorological & atmospheric intelligence platform engineered to meet the requirements of the GDG Web Development pre-interview assessment. It dynamically streams and visualizes scientific public datasets provided by the <strong>Open-Meteo Weather</strong>, <strong>Air Quality</strong>, and <strong>Geocoding APIs</strong>.
+                <strong>WeatherGo</strong> is an open-access meteorological & atmospheric intelligence platform engineered to meet the requirements of the GDG Web Development pre-interview assessment. It dynamically streams and visualizes scientific public datasets provided by the <strong>Open-Meteo Weather</strong>, <strong>Air Quality</strong>, and <strong>Geocoding APIs</strong>.
               </p>
             </section>
 
