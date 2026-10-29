@@ -10,9 +10,9 @@
 
 ## 🌍 Project Objective & Overview
 
-**WeatherGo** is a modern, tactile Neumorphic web application created for the Google Developer Groups (GDG) Web Development interview assessment. It addresses the **Public Data Explorer** specification by integrating directly with open public scientific APIs (**Open-Meteo Weather**, **Air Quality**, and **Geocoding APIs**), which cover over 200,000+ global cities with zero required API keys and no rate-limit barriers.
+**WeatherGo** is a modern, high-fidelity Glassmorphic web application created for the Google Developer Groups (GDG) Web Development interview assessment. It addresses the **Public Data Explorer** specification by integrating directly with open public scientific APIs (**Open-Meteo Weather**, **Air Quality**, and **Geocoding APIs**), which cover over 200,000+ global cities with zero required API keys and no rate-limit barriers.
 
-The interface is engineered with a **high-fidelity Neumorphism (Soft UI) design system**, curated soft porcelain color tokens, dual-shadow tactile lighting physics, responsive data grids, interactive SVG trend sparklines, and a side-by-side station comparison matrix.
+The interface is engineered with a **high-fidelity Glassmorphism design system**, featuring an ambient aurora mesh canvas, frosted glass blur surfaces, specular hairline highlights, responsive data grids, interactive SVG trend sparklines, and a side-by-side station comparison matrix.
 
 ---
 

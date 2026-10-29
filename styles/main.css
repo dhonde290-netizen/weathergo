@@ -1,6 +1,6 @@
 /* ==========================================================================
-   TerraPulse — High-Fidelity Neumorphic Design System
-   Variables, Typography, Theme Engine, Base Layout
+   WeatherGo — High-Fidelity Glassmorphism Design System
+   Variables, Typography, Frosted Glass Engine, Ambient Aurora Canvas
    ========================================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
@@ -15,50 +15,59 @@
   --radius-sm: 10px;
   --radius-md: 14px;
   --radius-lg: 18px;
-  --radius-xl: 24px;
-  --radius-2xl: 32px;
+  --radius-xl: 22px;
+  --radius-2xl: 28px;
   --radius-full: 9999px;
 
   --transition-fast: 160ms cubic-bezier(0.4, 0, 0.2, 1);
   --transition-normal: 260ms cubic-bezier(0.4, 0, 0.2, 1);
   --transition-bounce: 350ms cubic-bezier(0.34, 1.56, 0.64, 1);
 
-  /* Status Tokens */
+  /* Status Colors */
   --color-good: #059669;
-  --color-good-bg: rgba(5, 150, 105, 0.12);
+  --color-good-bg: rgba(5, 150, 105, 0.14);
   --color-moderate: #d97706;
-  --color-moderate-bg: rgba(217, 119, 6, 0.12);
+  --color-moderate-bg: rgba(217, 119, 6, 0.14);
   --color-unhealthy: #dc2626;
-  --color-unhealthy-bg: rgba(220, 38, 38, 0.12);
+  --color-unhealthy-bg: rgba(220, 38, 38, 0.14);
   --color-info: #0284c7;
-  --color-info-bg: rgba(2, 132, 199, 0.12);
+  --color-info-bg: rgba(2, 132, 199, 0.14);
 
-  /* Neumorphic Soft UI Palette — Porcelain / Cool Slate */
-  --bg-app: #e6ecf5;
-  --bg-surface: #e6ecf5;
-  --bg-card: #e6ecf5;
-  --bg-card-hover: #eaf0f8;
-  --bg-subtle: #edf3fa;
-  --bg-muted: rgba(163, 177, 198, 0.25);
-  --bg-input: #dfe6f0;
+  /* Glassmorphism Atmosphere & Surface Palette */
+  --bg-app: radial-gradient(at 0% 0%, #dbeafe 0px, transparent 50%),
+            radial-gradient(at 100% 0%, #e0e7ff 0px, transparent 50%),
+            radial-gradient(at 100% 100%, #d1fae5 0px, transparent 50%),
+            radial-gradient(at 0% 100%, #fef3c7 0px, transparent 50%),
+            #f1f5f9;
 
-  /* Neumorphic Shadows (Light Mode Dual Light Physics) */
-  --neu-flat: -6px -6px 14px rgba(255, 255, 255, 0.95), 6px 6px 14px rgba(166, 180, 200, 0.45);
-  --neu-flat-hover: -8px -8px 18px rgba(255, 255, 255, 1), 8px 8px 18px rgba(166, 180, 200, 0.65);
-  --neu-sm: -3px -3px 7px rgba(255, 255, 255, 0.95), 3px 3px 7px rgba(166, 180, 200, 0.45);
-  --neu-sm-hover: -5px -5px 11px rgba(255, 255, 255, 1), 5px 5px 11px rgba(166, 180, 200, 0.58);
-  --neu-lg: -12px -12px 28px rgba(255, 255, 255, 0.95), 12px 12px 28px rgba(166, 180, 200, 0.5);
-  --neu-inset: inset 3px 3px 6px rgba(166, 180, 200, 0.45), inset -3px -3px 6px rgba(255, 255, 255, 0.95);
-  --neu-inset-deep: inset 4px 4px 10px rgba(166, 180, 200, 0.52), inset -4px -4px 10px rgba(255, 255, 255, 0.95);
-  --neu-inset-sm: inset 2px 2px 4px rgba(166, 180, 200, 0.4), inset -2px -2px 4px rgba(255, 255, 255, 0.9);
-  --neu-pressed: inset 2px 2px 5px rgba(166, 180, 200, 0.6), inset -2px -2px 5px rgba(255, 255, 255, 0.95);
-  --neu-glow: 0 0 14px rgba(2, 132, 199, 0.35), -4px -4px 10px rgba(255, 255, 255, 0.9), 4px 4px 10px rgba(166, 180, 200, 0.45);
+  --glass-bg: rgba(255, 255, 255, 0.65);
+  --glass-bg-card: rgba(255, 255, 255, 0.72);
+  --glass-bg-hover: rgba(255, 255, 255, 0.88);
+  --glass-bg-subtle: rgba(255, 255, 255, 0.45);
+  --glass-bg-input: rgba(255, 255, 255, 0.58);
+  --glass-bg-active: rgba(255, 255, 255, 0.95);
+  --glass-bg-pill: rgba(255, 255, 255, 0.5);
 
-  /* Precision Bevel Borders */
-  --border-subtle: rgba(255, 255, 255, 0.75);
-  --border-strong: rgba(188, 202, 220, 0.6);
+  /* Glass Translucent Borders */
+  --glass-border: rgba(255, 255, 255, 0.68);
+  --glass-border-subtle: rgba(255, 255, 255, 0.42);
+  --glass-border-strong: rgba(255, 255, 255, 0.88);
+  --glass-border-focus: #0284c7;
+
+  /* Optical Blur */
+  --glass-blur: blur(16px) saturate(180%);
+  --glass-blur-lg: blur(24px) saturate(190%);
+  --glass-blur-sm: blur(10px) saturate(160%);
+
+  /* Multi-Layer Specular Glass Shadows */
+  --glass-shadow-sm: 0 4px 16px 0 rgba(31, 38, 135, 0.07), inset 0 1px 1px 0 rgba(255, 255, 255, 0.85);
+  --glass-shadow-md: 0 8px 32px 0 rgba(31, 38, 135, 0.08), inset 0 1px 1px 0 rgba(255, 255, 255, 0.9);
+  --glass-shadow-lg: 0 16px 48px 0 rgba(31, 38, 135, 0.12), inset 0 1px 2px 0 rgba(255, 255, 255, 0.95);
+  --glass-shadow-hover: 0 16px 40px 0 rgba(2, 132, 199, 0.18), inset 0 1px 2px 0 rgba(255, 255, 255, 1);
+  --glass-shadow-drawer: -14px 0 44px 0 rgba(15, 23, 42, 0.18), inset 1px 0 1px 0 rgba(255, 255, 255, 0.85);
+
+  /* General Fallbacks */
   --border-focus: #0284c7;
-  --border-light: rgba(255, 255, 255, 0.9);
 
   /* Modern High-Contrast Typography */
   --text-primary: #0f172a;
@@ -66,50 +75,42 @@
   --text-muted: #64748b;
   --text-inverse: #ffffff;
 
-  /* Accent Colorway */
+  /* Brand Accents */
   --accent-primary: #0284c7;
   --accent-primary-hover: #0369a1;
-  --accent-glow: rgba(2, 132, 199, 0.16);
+  --accent-glow: rgba(2, 132, 199, 0.18);
   --accent-secondary: #6366f1;
-
-  /* Backward Compatibility Shadow Aliases */
-  --shadow-sm: var(--neu-sm);
-  --shadow-md: var(--neu-flat);
-  --shadow-lg: var(--neu-lg);
-  --shadow-drawer: -14px 0 35px rgba(166, 180, 200, 0.5), inset 2px 0 4px rgba(255, 255, 255, 0.8);
-
-  --glass-bg: rgba(230, 236, 245, 0.92);
-  --glass-border: rgba(255, 255, 255, 0.85);
 }
 
-/* Optional Neumorphic Dark Mode (Slate / Charcoal) */
+/* Optional Dark Glass Mode */
 [data-theme='dark'] {
-  --bg-app: #181d24;
-  --bg-surface: #1e242d;
-  --bg-card: #1e242d;
-  --bg-card-hover: #232b35;
-  --bg-subtle: #242b36;
-  --bg-muted: rgba(255, 255, 255, 0.05);
-  --bg-input: #151a21;
+  --bg-app: radial-gradient(at 0% 0%, #0c1a30 0px, transparent 50%),
+            radial-gradient(at 100% 0%, #1e1145 0px, transparent 50%),
+            radial-gradient(at 100% 100%, #062820 0px, transparent 50%),
+            radial-gradient(at 0% 100%, #291a05 0px, transparent 50%),
+            #0b0f19;
 
-  --border-subtle: rgba(255, 255, 255, 0.06);
-  --border-strong: rgba(255, 255, 255, 0.12);
-  --border-light: rgba(255, 255, 255, 0.08);
+  --glass-bg: rgba(17, 24, 39, 0.68);
+  --glass-bg-card: rgba(17, 24, 39, 0.74);
+  --glass-bg-hover: rgba(30, 41, 59, 0.88);
+  --glass-bg-subtle: rgba(15, 23, 42, 0.55);
+  --glass-bg-input: rgba(15, 23, 42, 0.65);
+  --glass-bg-active: rgba(30, 41, 59, 0.95);
+  --glass-bg-pill: rgba(255, 255, 255, 0.08);
 
-  --neu-flat: -5px -5px 12px rgba(255, 255, 255, 0.04), 6px 6px 14px rgba(0, 0, 0, 0.55);
-  --neu-flat-hover: -7px -7px 16px rgba(255, 255, 255, 0.06), 8px 8px 18px rgba(0, 0, 0, 0.7);
-  --neu-sm: -3px -3px 7px rgba(255, 255, 255, 0.04), 3px 3px 7px rgba(0, 0, 0, 0.5);
-  --neu-sm-hover: -4px -4px 9px rgba(255, 255, 255, 0.06), 4px 4px 9px rgba(0, 0, 0, 0.65);
-  --neu-lg: -10px -10px 24px rgba(255, 255, 255, 0.04), 12px 12px 28px rgba(0, 0, 0, 0.75);
-  --neu-inset: inset 3px 3px 6px rgba(0, 0, 0, 0.6), inset -3px -3px 6px rgba(255, 255, 255, 0.04);
-  --neu-inset-deep: inset 4px 4px 10px rgba(0, 0, 0, 0.7), inset -4px -4px 10px rgba(255, 255, 255, 0.05);
-  --neu-inset-sm: inset 2px 2px 4px rgba(0, 0, 0, 0.5), inset -2px -2px 4px rgba(255, 255, 255, 0.04);
-  --neu-pressed: inset 2px 2px 5px rgba(0, 0, 0, 0.7), inset -2px -2px 5px rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.14);
+  --glass-border-subtle: rgba(255, 255, 255, 0.08);
+  --glass-border-strong: rgba(255, 255, 255, 0.22);
 
-  --text-primary: #f1f5f9;
-  --text-secondary: #94a3b8;
-  --text-muted: #64748b;
-  --glass-bg: rgba(30, 36, 45, 0.92);
+  --glass-shadow-sm: 0 4px 20px 0 rgba(0, 0, 0, 0.35), inset 0 1px 1px 0 rgba(255, 255, 255, 0.12);
+  --glass-shadow-md: 0 8px 32px 0 rgba(0, 0, 0, 0.45), inset 0 1px 1px 0 rgba(255, 255, 255, 0.16);
+  --glass-shadow-lg: 0 16px 48px 0 rgba(0, 0, 0, 0.6), inset 0 1px 2px 0 rgba(255, 255, 255, 0.2);
+  --glass-shadow-hover: 0 16px 40px 0 rgba(2, 132, 199, 0.32), inset 0 1px 2px 0 rgba(255, 255, 255, 0.25);
+  --glass-shadow-drawer: -14px 0 44px 0 rgba(0, 0, 0, 0.65), inset 1px 0 1px 0 rgba(255, 255, 255, 0.15);
+
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
 }
 
 /* --------------------------------------------------------------------------
@@ -130,28 +131,57 @@ html {
 
 body {
   font-family: var(--font-sans);
-  background-color: var(--bg-app);
+  background: var(--bg-app);
+  background-attachment: fixed;
   color: var(--text-primary);
   line-height: 1.5;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  transition: background-color var(--transition-normal), color var(--transition-normal);
+  transition: background var(--transition-normal), color var(--transition-normal);
   overflow-x: hidden;
+  position: relative;
 }
 
-/* Ambient light glow over soft canvas */
+/* Floating Ambient Aurora Spheres (illuminating frosted glass from behind) */
 body::before {
   content: '';
   position: fixed;
   top: -120px;
-  right: -80px;
+  left: 15%;
   width: 550px;
   height: 550px;
-  background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.4) 0%, rgba(99, 102, 241, 0.25) 50%, transparent 70%);
+  filter: blur(80px);
   pointer-events: none;
   z-index: 0;
-  opacity: 0.55;
+  animation: auroraFloat1 20s ease-in-out infinite alternate;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  bottom: -100px;
+  right: 10%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.3) 0%, rgba(245, 158, 11, 0.2) 45%, transparent 70%);
+  filter: blur(85px);
+  pointer-events: none;
+  z-index: 0;
+  animation: auroraFloat2 24s ease-in-out infinite alternate;
+}
+
+@keyframes auroraFloat1 {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(60px, 40px) scale(1.1); }
+  100% { transform: translate(-40px, 80px) scale(0.95); }
+}
+
+@keyframes auroraFloat2 {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-70px, -50px) scale(1.08); }
+  100% { transform: translate(50px, -70px) scale(0.92); }
 }
 
 /* Accessibility utility */
@@ -194,19 +224,11 @@ button:focus-visible, input:focus-visible, select:focus-visible {
   outline-offset: 2px;
 }
 
-/* SVG icon helper & Click Event Normalization */
+/* SVG icon helper */
 .svg-icon {
   display: inline-block;
   vertical-align: middle;
   flex-shrink: 0;
-}
-
-button svg,
-button span,
-button path,
-button polygon,
-button polyline {
-  pointer-events: none;
 }
 
 /* --------------------------------------------------------------------------
@@ -224,16 +246,16 @@ button polyline {
   flex: 1;
 }
 
-/* Neumorphic Site Header & Navbar */
+/* Frosted Glass Header & Navigation Bar */
 .site-header {
   position: sticky;
   top: 0;
   z-index: 40;
   background-color: var(--glass-bg);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border-bottom: 1px solid var(--border-light);
-  box-shadow: 0 6px 20px -4px rgba(166, 180, 200, 0.35);
+  backdrop-filter: var(--glass-blur-lg);
+  -webkit-backdrop-filter: var(--glass-blur-lg);
+  border-bottom: 1px solid var(--glass-border);
+  box-shadow: 0 4px 24px rgba(31, 38, 135, 0.05), inset 0 -1px 0 rgba(255, 255, 255, 0.5);
   transition: all var(--transition-normal);
 }
 
@@ -248,21 +270,21 @@ button polyline {
 .brand-wrap {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
   text-decoration: none;
   color: var(--text-primary);
-  padding: 4px 6px;
+  padding: 4px 8px;
   border-radius: var(--radius-xl);
-  transition: all var(--transition-fast);
+  transition: transform var(--transition-fast);
 }
 
 .brand-logo-img {
-  height: 42px;
+  height: 40px;
   width: auto;
-  max-width: 180px;
+  max-width: 175px;
   display: block;
   object-fit: contain;
-  filter: drop-shadow(0 2px 5px rgba(166, 180, 200, 0.45));
+  filter: drop-shadow(0 2px 8px rgba(31, 38, 135, 0.12));
   transition: transform var(--transition-fast);
 }
 
@@ -275,25 +297,20 @@ button polyline {
 }
 
 .brand-badge {
-  font-size: 0.65rem;
+  font-size: 0.68rem;
   font-weight: 700;
-  padding: 3px 8px;
+  padding: 3px 10px;
   border-radius: var(--radius-full);
-  background: var(--bg-surface);
-  box-shadow: var(--neu-inset-sm);
-  border: 1px solid var(--border-subtle);
+  background: rgba(2, 132, 199, 0.12);
+  border: 1px solid rgba(2, 132, 199, 0.28);
   color: var(--accent-primary);
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.06em;
+  backdrop-filter: var(--glass-blur-sm);
+  -webkit-backdrop-filter: var(--glass-blur-sm);
 }
 
-.brand-sub {
-  font-size: 0.74rem;
-  color: var(--text-muted);
-  font-weight: 500;
-}
-
-/* Nav Action Buttons — Tactile Neumorphic Pills */
+/* Frosted Glass Nav Action Buttons */
 .nav-actions {
   display: flex;
   align-items: center;
@@ -304,11 +321,13 @@ button polyline {
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  padding: 9px 16px;
+  padding: 9px 18px;
   border-radius: var(--radius-full);
-  background: var(--bg-surface);
-  box-shadow: var(--neu-sm);
-  border: 1px solid var(--border-light);
+  background: var(--glass-bg-subtle);
+  backdrop-filter: var(--glass-blur-sm);
+  -webkit-backdrop-filter: var(--glass-blur-sm);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow-sm);
   color: var(--text-secondary);
   font-size: 0.85rem;
   font-weight: 600;
@@ -316,21 +335,22 @@ button polyline {
 }
 
 .btn-nav-action:hover {
-  box-shadow: var(--neu-sm-hover);
+  background: var(--glass-bg-hover);
+  border-color: var(--glass-border-strong);
   color: var(--text-primary);
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  box-shadow: var(--glass-shadow-md);
 }
 
 .btn-nav-action:active {
-  box-shadow: var(--neu-pressed);
   transform: translateY(0);
 }
 
 .btn-nav-action.active {
-  box-shadow: var(--neu-pressed);
-  background: var(--bg-surface);
-  color: var(--accent-primary);
-  border-color: rgba(2, 132, 199, 0.4);
+  background: var(--accent-primary);
+  color: #fff;
+  border-color: var(--accent-primary);
+  box-shadow: 0 6px 20px rgba(2, 132, 199, 0.35);
 }
 
 .btn-nav-icon-only {
@@ -346,14 +366,6 @@ button polyline {
   font-weight: 700;
   font-size: 0.82rem;
   min-width: 46px;
-  justify-content: center;
-}
-
-.btn-theme-toggle {
-  padding: 9px;
-  border-radius: var(--radius-full);
-  display: inline-flex;
-  align-items: center;
   justify-content: center;
 }
 
@@ -378,12 +390,14 @@ button polyline {
   gap: 24px;
 }
 
-/* Neumorphic Site Footer */
+/* Frosted Glass Site Footer */
 .site-footer {
-  border-top: 1px solid var(--border-light);
+  border-top: 1px solid var(--glass-border);
   padding: 28px 0;
-  background: var(--bg-surface);
-  box-shadow: 0 -6px 20px -4px rgba(166, 180, 200, 0.25);
+  background-color: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  box-shadow: 0 -4px 24px rgba(31, 38, 135, 0.04);
   font-size: 0.84rem;
   color: var(--text-muted);
 }
@@ -422,7 +436,7 @@ button polyline {
   color: var(--accent-primary);
 }
 
-/* Toast Notifications */
+/* Frosted Glass Toast Notifications */
 .toast-container {
   position: fixed;
   bottom: 24px;
@@ -436,12 +450,14 @@ button polyline {
   display: inline-flex;
   align-items: center;
   gap: 12px;
-  background: var(--bg-surface);
+  background: var(--glass-bg-card);
+  backdrop-filter: var(--glass-blur-lg);
+  -webkit-backdrop-filter: var(--glass-blur-lg);
   color: var(--text-primary);
-  border: 1px solid var(--border-light);
+  border: 1px solid var(--glass-border-strong);
   border-radius: var(--radius-xl);
   padding: 14px 22px;
-  box-shadow: var(--neu-lg);
+  box-shadow: var(--glass-shadow-lg);
   font-size: 0.88rem;
   font-weight: 600;
   animation: toastSlideUp 250ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
@@ -481,9 +497,6 @@ button polyline {
   }
   .navbar {
     height: 64px;
-  }
-  .brand-sub {
-    display: none;
   }
   .btn-nav-action span {
     display: none;

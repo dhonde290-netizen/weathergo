@@ -320,31 +320,7 @@ function setupEventListeners() {
   // Locate Me Button (Geolocation API)
   elements.btnLocateMe.addEventListener('click', handleLocateMe);
 
-  // Quick Explore Chips
-  document.querySelectorAll('.chip-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.chip-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
 
-      const presetStr = btn.getAttribute('data-preset');
-      const cityName = presetStr.split(',')[0].trim();
-      
-      // Check if already in active cities
-      const existing = store.getState().cities.find(c => c.name.toLowerCase() === cityName.toLowerCase());
-      if (existing) {
-        store.setState({ searchQuery: cityName });
-        elements.mainSearchInput.value = cityName;
-        if (elements.btnClearSearch) elements.btnClearSearch.style.display = 'inline-flex';
-        store.openCityModal(existing);
-      } else {
-        // Trigger search and load
-        elements.mainSearchInput.value = cityName;
-        if (elements.btnClearSearch) elements.btnClearSearch.style.display = 'inline-flex';
-        store.setState({ searchQuery: cityName });
-        searchAndAddCity(cityName);
-      }
-    });
-  });
 
   // Filter Selects
   elements.selectRegion.addEventListener('change', e => {
