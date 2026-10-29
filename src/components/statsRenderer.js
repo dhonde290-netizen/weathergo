@@ -1,6 +1,7 @@
 /**
  * Stats Overview Bar Component
  * Computes high-level scientific and climate indicators across all loaded stations
+ * Pills are clickable shortcuts to directly inspect station metrics
  */
 
 import { formatTemp } from '../utils/formatters.js';
@@ -47,7 +48,7 @@ export function renderStatsBar(cities, unit = 'C') {
         </div>
       </div>
 
-      <div class="stat-pill">
+      <div class="stat-pill stat-pill-clickable" data-action="open-detail" data-id="${hottest.id}" role="button" tabindex="0" title="Click to view ${hottest.name} deep-dive metrics">
         <span class="stat-icon warm">${getIconSvg('thermometer', 15)}</span>
         <div class="stat-text">
           <span class="stat-label">Warmest Station</span>
@@ -55,7 +56,7 @@ export function renderStatsBar(cities, unit = 'C') {
         </div>
       </div>
 
-      <div class="stat-pill">
+      <div class="stat-pill stat-pill-clickable" data-action="open-detail" data-id="${coolest.id}" role="button" tabindex="0" title="Click to view ${coolest.name} deep-dive metrics">
         <span class="stat-icon cool">${getIconSvg('snow', 15)}</span>
         <div class="stat-text">
           <span class="stat-label">Coolest Station</span>
@@ -64,7 +65,7 @@ export function renderStatsBar(cities, unit = 'C') {
       </div>
 
       ${cleanest ? `
-        <div class="stat-pill">
+        <div class="stat-pill stat-pill-clickable" data-action="open-detail" data-id="${cleanest.id}" role="button" tabindex="0" title="Click to view ${cleanest.name} deep-dive metrics">
           <span class="stat-icon clean">${getIconSvg('sparkles', 15)}</span>
           <div class="stat-text">
             <span class="stat-label">Cleanest Air</span>

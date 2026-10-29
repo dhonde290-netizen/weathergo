@@ -15,10 +15,13 @@ import { exportCitiesToCSV, exportCitiesToJSON } from './utils/formatters.js';
 
 // DOM Elements
 const elements = {
+  brandLink: document.getElementById('brand-link'),
   mainSearchInput: document.getElementById('main-search-input'),
+  btnClearSearch: document.getElementById('btn-clear-search'),
   autocompleteDropdown: document.getElementById('autocomplete-dropdown'),
   btnLocateMe: document.getElementById('btn-locate-me'),
   statsOverviewContainer: document.getElementById('stats-overview-container'),
+  stationCountBadge: document.getElementById('station-count-badge'),
   cardsGridContainer: document.getElementById('cards-grid-container'),
   tableViewContainer: document.getElementById('table-view-container'),
   emptyStateContainer: document.getElementById('empty-state-container'),
@@ -128,6 +131,16 @@ function renderUI(state) {
   // Render Stats Overview Bar
   elements.statsOverviewContainer.innerHTML = renderStatsBar(state.cities, state.unit);
 
+  // Update Station Count Badge
+  if (elements.stationCountBadge) {
+    elements.stationCountBadge.textContent = `${visibleCities.length} Station${visibleCities.length === 1 ? '' : 's'}`;
+  }
+
+  // Update Clear Search Button
+  if (elements.btnClearSearch) {
+    elements.btnClearSearch.style.display = elements.mainSearchInput.value.trim() ? 'inline-flex' : 'none';
+  }
+
   // Render Compare Count Pill in Navbar
   const compareCount = state.compareCityIds.length;
   if (compareCount > 0) {
@@ -212,9 +225,46 @@ function renderUI(state) {
  * Setup Event Listeners
  */
 function setupEventListeners() {
+  // Brand Logo Click: Reset view and smooth scroll to top without adding '#' to URL
+  if (elements.brandLink) {
+    elements.brandLink.addEventListener('click', e => {
+      e.preventDefault();
+      resetAllFilters();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  // Clear Search Button
+  if (elements.btnClearSearch) {
+    elements.btnClearSearch.addEventListener('click', () => {
+      elements.mainSearchInput.value = '';
+      elements.btnClearSearch.style.display = 'none';
+      store.setState({ searchQuery: '' });
+      elements.autocompleteDropdown.classList.remove('active');
+      elements.autocompleteDropdown.innerHTML = '';
+      elements.mainSearchInput.focus();
+    });
+  }
+
+  // Enter Key on Search Input
+  elements.mainSearchInput.addEventListener('keydown', e => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      const firstItem = elements.autocompleteDropdown.querySelector('.autocomplete-item');
+      if (firstItem && elements.autocompleteDropdown.classList.contains('active')) {
+        firstItem.click();
+      } else if (elements.mainSearchInput.value.trim().length >= 2) {
+        searchAndAddCity(elements.mainSearchInput.value.trim());
+      }
+    }
+  });
+
   // Live Search with Debounce and Geocoding
   elements.mainSearchInput.addEventListener('input', e => {
     const query = e.target.value;
+    if (elements.btnClearSearch) {
+      elements.btnClearSearch.style.display = query.trim() ? 'inline-flex' : 'none';
+    }
     store.setState({ searchQuery: query });
 
     clearTimeout(searchDebounceTimer);
@@ -247,6 +297,9 @@ function setupEventListeners() {
   // Quick Explore Chips
   document.querySelectorAll('.chip-btn').forEach(btn => {
     btn.addEventListener('click', () => {
+      document.querySelectorAll('.chip-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
       const presetStr = btn.getAttribute('data-preset');
       const cityName = presetStr.split(',')[0].trim();
       
@@ -255,10 +308,12 @@ function setupEventListeners() {
       if (existing) {
         store.setState({ searchQuery: cityName });
         elements.mainSearchInput.value = cityName;
+        if (elements.btnClearSearch) elements.btnClearSearch.style.display = 'inline-flex';
         store.openCityModal(existing);
       } else {
         // Trigger search and load
         elements.mainSearchInput.value = cityName;
+        if (elements.btnClearSearch) elements.btnClearSearch.style.display = 'inline-flex';
         store.setState({ searchQuery: cityName });
         searchAndAddCity(cityName);
       }
@@ -477,9 +532,20 @@ function handleLocateMe() {
  * Delegated Action Handler for dynamically rendered HTML
  */
 function handleDelegatedActions(e) {
+  // If user clicked the dark backdrop directly outside modal content, close modals
+  if (e.target.classList.contains('modal-backdrop')) {
+    if (store.getState().activeModalCity) store.closeCityModal();
+    if (store.getState().isCompareModalOpen) store.closeCompareModal();
+    if (store.getState().isInfoModalOpen) store.closeInfoModal();
+    return;
+  }
+
   const target = e.target.closest('[data-action]');
   if (!target) {
-    // If user clicked inside a card but not on a specific action button, open detail modal
+    // If a modal or drawer is open, don't trigger background card clicks
+    if (store.getState().activeModalCity || store.getState().isCompareModalOpen || store.getState().isInfoModalOpen) {
+      return;
+    }
     const card = e.target.closest('.data-card');
     if (card && !card.classList.contains('skeleton-card')) {
       const cityId = card.getAttribute('data-city-id');
@@ -512,17 +578,14 @@ function handleDelegatedActions(e) {
       break;
 
     case 'close-modal':
-    case 'close-modal-backdrop':
       store.closeCityModal();
       break;
 
     case 'close-compare-modal':
-    case 'close-compare-backdrop':
       store.closeCompareModal();
       break;
 
     case 'close-info-modal':
-    case 'close-info-backdrop':
       store.closeInfoModal();
       break;
 
@@ -548,6 +611,20 @@ function handleDelegatedActions(e) {
         console.error('Select location error:', err);
       }
       break;
+
+    case 'compare-preset-sample': {
+      const allCities = store.getState().cities;
+      const tokyo = allCities.find(c => c.name.toLowerCase().includes('tokyo'));
+      const london = allCities.find(c => c.name.toLowerCase().includes('london'));
+      if (tokyo && london) {
+        store.setState({ compareCityIds: [tokyo.id, london.id], isCompareModalOpen: true });
+        store.showToast('Added Tokyo & London to comparison', 'success');
+      } else if (allCities.length >= 2) {
+        store.setState({ compareCityIds: [allCities[0].id, allCities[1].id], isCompareModalOpen: true });
+        store.showToast(`Comparing ${allCities[0].name} & ${allCities[1].name}`, 'success');
+      }
+      break;
+    }
   }
 }
 

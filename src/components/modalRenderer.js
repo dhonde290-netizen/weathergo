@@ -72,8 +72,8 @@ export function renderCityModal(city, { unit = 'C', isFavorite = false, isCompar
   }
 
   return `
-    <div class="modal-backdrop" id="city-modal-backdrop" data-action="close-modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="modal-city-title">
-      <div class="modal-drawer" onclick="event.stopPropagation()">
+    <div class="modal-backdrop" id="city-modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="modal-city-title">
+      <div class="modal-drawer">
         <!-- Drawer Header -->
         <div class="modal-header">
           <div class="modal-header-info">

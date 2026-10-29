@@ -6,8 +6,8 @@ import { getIconSvg } from '../utils/icons.js';
 
 export function renderInfoModal() {
   return `
-    <div class="modal-backdrop" id="info-modal-backdrop" data-action="close-info-backdrop" role="dialog" aria-modal="true" aria-labelledby="modal-info-title">
-      <div class="modal-dialog modal-dialog-md" onclick="event.stopPropagation()">
+    <div class="modal-backdrop" id="info-modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="modal-info-title">
+      <div class="modal-dialog modal-dialog-md">
         <div class="modal-header">
           <div>
             <div class="info-badge-row">

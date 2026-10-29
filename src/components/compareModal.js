@@ -6,7 +6,56 @@ import { formatTemp, formatWind } from '../utils/formatters.js';
 import { getIconSvg } from '../utils/icons.js';
 
 export function renderCompareModal(cities, { unit = 'C' } = {}) {
-  if (!cities || cities.length === 0) return '';
+  // If no cities are selected for comparison yet, show an intuitive guided empty state
+  if (!cities || cities.length === 0) {
+    return `
+      <div class="modal-backdrop" id="compare-modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="modal-compare-title">
+        <div class="modal-dialog modal-dialog-md">
+          <div class="modal-header">
+            <div>
+              <h2 id="modal-compare-title" class="modal-city-name">${getIconSvg('compare', 20)} Station Comparison Matrix</h2>
+              <p class="modal-subtitle">Benchmark environmental metrics across stations</p>
+            </div>
+            <button 
+              type="button" 
+              class="btn-icon-action btn-close-modal" 
+              data-action="close-compare-modal" 
+              title="Close (Esc)" 
+              aria-label="Close comparison"
+            >
+              ${getIconSvg('x', 20)}
+            </button>
+          </div>
+
+          <div class="modal-scroll-content">
+            <div class="compare-empty-prompt">
+              <div class="compare-empty-icon">${getIconSvg('compare', 32)}</div>
+              <h3>No stations selected yet</h3>
+              <p>You can compare up to 3 global stations side by side. Use the <strong>"Compare"</strong> button on any city card to add it to this matrix.</p>
+              
+              <div class="compare-shortcut-box">
+                <span>Want to see it in action?</span>
+                <button type="button" class="btn-preset-compare" data-action="compare-preset-sample">
+                  ${getIconSvg('sparkles', 14)}
+                  <span>Compare Tokyo &amp; London</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button 
+              type="button" 
+              class="btn-footer-primary" 
+              data-action="close-compare-modal"
+            >
+              Got It
+            </button>
+          </div>
+        </div>
+      </div>
+    `;
+  }
 
   const metrics = [
     { label: 'Current Temperature', key: 'temp', format: c => formatTemp(c.weather?.temperature, unit), raw: c => c.weather?.temperature },
@@ -24,8 +73,8 @@ export function renderCompareModal(cities, { unit = 'C' } = {}) {
   ];
 
   return `
-    <div class="modal-backdrop" id="compare-modal-backdrop" data-action="close-compare-backdrop" role="dialog" aria-modal="true" aria-labelledby="modal-compare-title">
-      <div class="modal-dialog modal-dialog-lg" onclick="event.stopPropagation()">
+    <div class="modal-backdrop" id="compare-modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="modal-compare-title">
+      <div class="modal-dialog modal-dialog-lg">
         <div class="modal-header">
           <div>
             <h2 id="modal-compare-title" class="modal-city-name">${getIconSvg('compare', 20)} Station Comparison Matrix</h2>

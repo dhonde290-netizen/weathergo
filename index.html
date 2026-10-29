@@ -121,6 +121,18 @@
             <div class="search-box-actions">
               <button 
                 type="button" 
+                id="btn-clear-search" 
+                class="btn-clear-search" 
+                title="Clear search" 
+                style="display: none;" 
+                aria-label="Clear search"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 6 6 18"/><path d="m6 6 12 12"/>
+                </svg>
+              </button>
+              <button 
+                type="button" 
                 id="btn-locate-me" 
                 class="btn-search-locate" 
                 title="Use current geolocation to fetch local public telemetry"
@@ -215,6 +227,9 @@
         </div>
 
         <div class="filter-right-group">
+          <!-- Station Match Counter -->
+          <span class="station-count-pill" id="station-count-badge">12 Stations</span>
+
           <!-- Favorites Only Toggle -->
           <button 
             type="button" 
@@ -290,7 +305,7 @@
         </div>
         <div class="footer-links">
           <a href="#" id="footer-link-about" class="footer-link">Architecture & Task Breakdown</a>
-          <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="footer-link">Source Reference</a>
+          <a href="https://open-meteo.com/en/docs" target="_blank" rel="noopener noreferrer" class="footer-link">API Documentation</a>
         </div>
       </div>
     </div>
