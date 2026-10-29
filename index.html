@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TerraPulse — Global Climate & Atmospheric Open Data Explorer | GDG Web Dev</title>
+  <meta name="description" content="Explore real-time atmospheric, weather, and air quality metrics across 200,000+ global locations dynamically retrieved from Open-Meteo public APIs. Built for GDG Web Development." />
+  <meta name="keywords" content="GDG, Google Developer Groups, Open-Meteo, Public Data Explorer, Weather API, Air Quality, Modern Web Development, Clean UI" />
+  <meta name="author" content="GDG Candidate" />
+  <meta name="theme-color" content="#090d16" />
+
+  <!-- Preconnect to Google Fonts for optimal performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="./styles/main.css" />
+  <link rel="stylesheet" href="./styles/components.css" />
+
+  <!-- Favicon (SVG dynamic data icon) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2338bdf8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='10'/><path d='M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20'/><path d='M2 12h20'/></svg>" />
+</head>
+<body>
+  <!-- Header & Top Navigation -->
+  <header class="site-header" role="banner">
+    <div class="app-container">
+      <nav class="navbar" role="navigation" aria-label="Main Navigation">
+        <a href="#" class="brand-wrap" id="brand-link" aria-label="TerraPulse Home">
+          <div class="brand-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/>
+              <path d="M2 12h20"/>
+            </svg>
+          </div>
+          <div class="brand-text">
+            <div class="brand-name">
+              <span>TerraPulse</span>
+              <span class="brand-badge">Open Data</span>
+            </div>
+            <span class="brand-sub">Atmospheric & Climate Observatory</span>
+          </div>
+        </a>
+
+        <!-- Header Actions -->
+        <div class="nav-actions">
+          <!-- Compare Trigger -->
+          <button 
+            type="button" 
+            class="btn-nav-action" 
+            id="nav-btn-compare" 
+            title="Open side-by-side comparison matrix"
+            aria-label="Compare cities"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m16 3 4 4-4 4"/><path d="M20 7H4"/><path d="m8 21-4-4 4-4"/><path d="M4 17h16"/>
+            </svg>
+            <span>Compare</span>
+            <span class="compare-badge-pill" id="compare-count-pill" style="display: none;">0</span>
+          </button>
+
+          <!-- Temperature Unit Toggle -->
+          <button 
+            type="button" 
+            class="btn-nav-action btn-unit-toggle" 
+            id="nav-btn-unit" 
+            title="Toggle between Celsius and Fahrenheit (U)" 
+            aria-label="Toggle temperature unit"
+          >
+            &deg;C
+          </button>
+
+          <!-- Theme Toggle -->
+          <button 
+            type="button" 
+            class="btn-nav-action btn-nav-icon-only" 
+            id="nav-btn-theme" 
+            title="Toggle light/dark theme (T)" 
+            aria-label="Toggle theme"
+          >
+            <svg id="theme-icon-dark" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/>
+            </svg>
+            <svg id="theme-icon-light" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+              <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>
+            </svg>
+          </button>
+
+          <!-- GDG Responsibilities & Project Info -->
+          <button 
+            type="button" 
+            class="btn-nav-action" 
+            id="nav-btn-info" 
+            title="About this Project & GDG Web Dev Alignment"
+            aria-label="About this project"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/>
+            </svg>
+            <span>GDG Task Info</span>
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <div class="app-container">
+    <main class="main-content" id="main-content" role="main">
+      <!-- Hidden / Offline Banner -->
+      <div id="offline-banner" class="offline-banner" style="display: none;" role="alert">
+        <span>You are currently offline. Showing cached environmental telemetry.</span>
+        <button type="button" id="btn-retry-network" class="btn-reset-filters">Retry</button>
+      </div>
+
+      <!-- Hero Search & Geocoding Autocomplete -->
+      <section class="hero-search-section" aria-labelledby="page-primary-title">
+        <h1 id="page-primary-title" class="sr-only">Public Data Explorer — Real-Time Global Weather and Air Quality</h1>
+
+        <div class="search-bar-wrap">
+          <div class="search-input-box">
+            <span class="search-icon-decor" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>
+              </svg>
+            </span>
+            <input 
+              type="text" 
+              id="main-search-input" 
+              class="main-search-input" 
+              placeholder="Search any global city, capital, or coordinate (e.g. Paris, Seoul, Mumbai, New York)..." 
+              autocomplete="off"
+              aria-label="Search city or location"
+              aria-autocomplete="list"
+              aria-controls="autocomplete-dropdown"
+            />
+            <div class="search-box-actions">
+              <button 
+                type="button" 
+                id="btn-locate-me" 
+                class="btn-search-locate" 
+                title="Use current geolocation to fetch local public telemetry"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"/><line x1="22" x2="18" y1="12" y2="12"/><line x1="6" x2="2" y1="12" y2="12"/><line x1="12" x2="12" y1="6" y2="2"/><line x1="12" x2="12" y1="22" y2="18"/>
+                </svg>
+                <span>Locate Me</span>
+              </button>
+              <span class="kbd-shortcut-hint" title="Press / to focus">/</span >
+            </div>
+          </div>
+
+          <!-- Autocomplete results dropdown -->
+          <div id="autocomplete-dropdown" class="autocomplete-dropdown" role="listbox" aria-label="Location suggestions"></div>
+        </div>
+
+        <!-- Quick Explore Presets Row -->
+        <div class="preset-chips-row" role="region" aria-label="Quick explore location presets">
+          <span class="preset-label">Quick Explore:</span>
+          <button type="button" class="chip-btn" data-preset="Tokyo, Japan">Tokyo</button>
+          <button type="button" class="chip-btn" data-preset="London, United Kingdom">London</button>
+          <button type="button" class="chip-btn" data-preset="San Francisco, United States">San Francisco</button>
+          <button type="button" class="chip-btn" data-preset="Bengaluru, India">Bengaluru</button>
+          <button type="button" class="chip-btn" data-preset="Sydney, Australia">Sydney</button>
+          <button type="button" class="chip-btn" data-preset="Cairo, Egypt">Cairo</button>
+          <button type="button" class="chip-btn" data-preset="São Paulo, Brazil">São Paulo</button>
+          <button type="button" class="chip-btn" data-preset="Reykjavik, Iceland">Reykjavik</button>
+          <button type="button" class="chip-btn" data-preset="Singapore, Singapore">Singapore</button>
+          <button type="button" class="chip-btn" data-preset="Dubai, United Arab Emirates">Dubai</button>
+        </div>
+      </section>
+
+      <!-- Global Atmospheric Summary Bar -->
+      <section id="stats-overview-container" aria-label="Global Atmospheric Summary"></section>
+
+      <!-- Filter, Search & View Controls Toolbar -->
+      <section class="filter-toolbar" aria-label="Data filters and sorting options">
+        <div class="filter-left-group">
+          <!-- Region Filter -->
+          <div class="filter-item-wrap">
+            <label for="select-region" class="filter-label">Region:</label>
+            <select id="select-region" class="filter-select" aria-label="Filter by geographic region">
+              <option value="All">All Regions</option>
+              <option value="Asia">Asia</option>
+              <option value="Europe">Europe</option>
+              <option value="North America">North America</option>
+              <option value="South America">South America</option>
+              <option value="Africa">Africa</option>
+              <option value="Oceania">Oceania</option>
+            </select>
+          </div>
+
+          <!-- Air Quality Filter -->
+          <div class="filter-item-wrap">
+            <label for="select-aqi" class="filter-label">Air Quality:</label>
+            <select id="select-aqi" class="filter-select" aria-label="Filter by air quality index">
+              <option value="All">All AQI Levels</option>
+              <option value="good">Good (0-50 AQI)</option>
+              <option value="moderate">Moderate (51-100 AQI)</option>
+              <option value="unhealthy">Unhealthy (101+ AQI)</option>
+            </select>
+          </div>
+
+          <!-- Weather Condition Filter -->
+          <div class="filter-item-wrap">
+            <label for="select-condition" class="filter-label">Condition:</label>
+            <select id="select-condition" class="filter-select" aria-label="Filter by weather condition">
+              <option value="All">All Conditions</option>
+              <option value="clear">Clear / Sunny</option>
+              <option value="cloudy">Cloudy / Overcast</option>
+              <option value="rain">Rain / Drizzle</option>
+              <option value="snow">Snowfall</option>
+              <option value="thunder">Thunderstorms</option>
+            </select>
+          </div>
+
+          <!-- Sort Selector -->
+          <div class="filter-item-wrap">
+            <label for="select-sort" class="filter-label">Sort:</label>
+            <select id="select-sort" class="filter-select" aria-label="Sort dataset by metric">
+              <option value="temp-desc">Highest Temperature</option>
+              <option value="temp-asc">Lowest Temperature</option>
+              <option value="aqi-asc">Cleanest Air (Lowest AQI)</option>
+              <option value="aqi-desc">Most Polluted (Highest AQI)</option>
+              <option value="wind-desc">Strongest Wind</option>
+              <option value="humidity-desc">Highest Humidity</option>
+              <option value="name-asc">Station Name (A &rarr; Z)</option>
+              <option value="name-desc">Station Name (Z &rarr; A)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="filter-right-group">
+          <!-- Favorites Only Toggle -->
+          <button 
+            type="button" 
+            id="btn-toggle-favs" 
+            class="btn-toggle-favs" 
+            title="Filter by saved locations"
+            aria-pressed="false"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+            </svg>
+            <span>Saved</span>
+          </button>
+
+          <!-- View Mode Toggle -->
+          <div class="view-mode-toggle" role="group" aria-label="Display View Mode">
+            <button type="button" id="btn-view-grid" class="view-btn active" title="Card Grid View" aria-label="Card Grid View">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/>
+              </svg>
+            </button>
+            <button type="button" id="btn-view-table" class="view-btn" title="High-Density Table View" aria-label="High-Density Table View">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="8" x2="21" y1="6" y2="6"/><line x1="8" x2="21" y1="12" y2="12"/><line x1="8" x2="21" y1="18" y2="18"/><line x1="3" x2="3.01" y1="6" y2="6"/><line x1="3" x2="3.01" y1="12" y2="12"/><line x1="3" x2="3.01" y1="18" y2="18"/>
+              </svg>
+            </button>
+          </div>
+
+          <!-- Export Data Dropdown -->
+          <button type="button" id="btn-export-csv" class="btn-export-dropdown" title="Export displayed stations as CSV">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/>
+            </svg>
+            <span>CSV</span>
+          </button>
+          <button type="button" id="btn-export-json" class="btn-export-dropdown" title="Export displayed stations as JSON">
+            <span>JSON</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- Data Explorer Presentation Area -->
+      <section id="explorer-content-area" aria-label="Global Atmospheric Stations">
+        <!-- Cards Grid Container -->
+        <div id="cards-grid-container" class="cards-grid-container"></div>
+
+        <!-- Table Container -->
+        <div id="table-view-container" style="display: none;"></div>
+
+        <!-- Empty State Container -->
+        <div id="empty-state-container" class="empty-state-card" style="display: none;">
+          <div class="empty-state-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>
+            </svg>
+          </div>
+          <h2 class="empty-state-title">No matching atmospheric stations found</h2>
+          <p class="empty-state-desc">Try clearing your filters, refining your search term, or exploring one of the quick presets above.</p>
+          <button type="button" id="btn-reset-filters" class="btn-reset-filters">Reset All Filters</button>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="app-container">
+      <div class="footer-inner">
+        <div class="footer-credits">
+          <span>TerraPulse &bull; GDG Web Development Pre-Interview Task</span>
+          <span>&bull;</span>
+          <span>Live Data powered by <a href="https://open-meteo.com" target="_blank" rel="noopener noreferrer" class="footer-link">Open-Meteo Public API</a></span>
+        </div>
+        <div class="footer-links">
+          <a href="#" id="footer-link-about" class="footer-link">Architecture & Task Breakdown</a>
+          <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="footer-link">Source Reference</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal & Drawer Mounts -->
+  <div id="modal-container-city"></div>
+  <div id="modal-container-compare"></div>
+  <div id="modal-container-info"></div>
+
+  <!-- Toast Container -->
+  <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+  <!-- Application Bootstrap -->
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>
