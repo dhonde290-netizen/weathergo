@@ -960,9 +960,9 @@
   position: fixed;
   inset: 0;
   z-index: 100;
-  background: rgba(15, 23, 42, 0.45);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  background: rgba(15, 23, 42, 0.32);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   display: flex;
   justify-content: flex-end;
   animation: backdropFadeIn 200ms ease forwards;
@@ -1002,6 +1002,8 @@
   justify-content: space-between;
   gap: 16px;
   background: var(--glass-bg-subtle);
+  backdrop-filter: var(--glass-blur-sm);
+  -webkit-backdrop-filter: var(--glass-blur-sm);
 }
 
 .modal-title-wrap {
@@ -1054,6 +1056,8 @@
   justify-content: flex-end;
   gap: 12px;
   background: var(--glass-bg-subtle);
+  backdrop-filter: var(--glass-blur-sm);
+  -webkit-backdrop-filter: var(--glass-blur-sm);
 }
 
 .btn-footer-primary {
@@ -1113,6 +1117,7 @@
 .modal-hero-temp-card {
   background: var(--glass-bg);
   backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
   border: 1px solid var(--glass-border);
   border-radius: var(--radius-2xl);
   padding: 22px;
@@ -1169,6 +1174,7 @@
 .modal-aqi-card {
   background: var(--glass-bg);
   backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
   border: 1px solid var(--glass-border);
   border-radius: var(--radius-2xl);
   padding: 22px;
@@ -1331,6 +1337,7 @@
 .daily-day-card {
   background: var(--glass-bg-subtle);
   backdrop-filter: var(--glass-blur-sm);
+  -webkit-backdrop-filter: var(--glass-blur-sm);
   border: 1px solid var(--glass-border);
   border-radius: var(--radius-lg);
   box-shadow: var(--glass-shadow-sm);
@@ -1420,6 +1427,7 @@
 .diag-card {
   background: var(--glass-bg-subtle);
   backdrop-filter: var(--glass-blur-sm);
+  -webkit-backdrop-filter: var(--glass-blur-sm);
   border: 1px solid var(--glass-border);
   border-radius: var(--radius-xl);
   box-shadow: var(--glass-shadow-sm);
