@@ -968,6 +968,11 @@
   animation: backdropFadeIn 200ms ease forwards;
 }
 
+#compare-modal-backdrop {
+  justify-content: center;
+  align-items: center;
+}
+
 @keyframes backdropFadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
@@ -1045,6 +1050,30 @@
   display: flex;
   flex-direction: column;
   gap: 24px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(2, 132, 199, 0.35) transparent;
+}
+
+.modal-scroll-content::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.modal-scroll-content::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-full);
+  margin: 6px;
+}
+
+.modal-scroll-content::-webkit-scrollbar-thumb {
+  background: rgba(2, 132, 199, 0.38);
+  border-radius: var(--radius-full);
+  border: 1px solid transparent;
+  background-clip: padding-box;
+}
+
+.modal-scroll-content::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-primary);
 }
 
 .modal-footer {
@@ -1521,13 +1550,51 @@
 
 .compare-table-wrapper {
   overflow-x: auto;
-  background: transparent;
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--glass-shadow-md);
+  overflow-y: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(2, 132, 199, 0.35) transparent;
+}
+
+.compare-table-wrapper::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.compare-table-wrapper::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-full);
+  margin: 6px;
+}
+
+.compare-table-wrapper::-webkit-scrollbar-thumb {
+  background: rgba(2, 132, 199, 0.38);
+  border-radius: var(--radius-full);
+  border: 1px solid transparent;
+  background-clip: padding-box;
+}
+
+.compare-table-wrapper::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-primary);
 }
 
 .compare-table {
   width: 100%;
   border-collapse: collapse;
   font-size: 0.88rem;
+  background: transparent;
+}
+
+.compare-table thead tr {
+  background: rgba(255, 255, 255, 0.28);
+  backdrop-filter: var(--glass-blur-sm);
+  -webkit-backdrop-filter: var(--glass-blur-sm);
+  border-bottom: 1px solid var(--glass-border);
 }
 
 .compare-table th, .compare-table td {
@@ -1535,8 +1602,20 @@
   border-bottom: 1px solid var(--glass-border-subtle);
 }
 
+.compare-table tbody tr {
+  transition: background var(--transition-fast);
+}
+
+.compare-table tbody tr:hover {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.compare-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
 .metric-header-cell {
-  background: var(--glass-bg-subtle);
+  background: transparent;
   width: 25%;
   text-align: left;
   font-size: 0.75rem;
@@ -1547,7 +1626,7 @@
 }
 
 .city-col-header {
-  background: var(--glass-bg-subtle);
+  background: transparent;
   text-align: center;
 }
 
