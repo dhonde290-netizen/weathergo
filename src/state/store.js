@@ -4,19 +4,20 @@
  */
 
 const STORAGE_KEYS = {
-  UNIT: 'terrapulse_unit',
-  FAVORITES: 'terrapulse_favorites'
+  UNIT: 'weathergo_unit',
+  FAVORITES: 'weathergo_favorites'
 };
 
 class Store {
   constructor() {
     this.listeners = new Set();
     
-    // Load persisted preferences
-    const savedUnit = localStorage.getItem(STORAGE_KEYS.UNIT) || 'C';
+    // Load persisted preferences (with fallback to previous keys)
+    const savedUnit = localStorage.getItem(STORAGE_KEYS.UNIT) || localStorage.getItem('terrapulse_unit') || 'C';
     let savedFavorites = [];
     try {
-      savedFavorites = JSON.parse(localStorage.getItem(STORAGE_KEYS.FAVORITES) || '[]');
+      const rawFav = localStorage.getItem(STORAGE_KEYS.FAVORITES) || localStorage.getItem('terrapulse_favorites') || '[]';
+      savedFavorites = JSON.parse(rawFav);
     } catch {
       savedFavorites = [];
     }

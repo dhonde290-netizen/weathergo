@@ -24,7 +24,7 @@ The interface is engineered with a **high-fidelity Glassmorphism design system**
 | **2. Fetch & display data dynamically** | All weather telemetry, air quality metrics (AQI, PM2.5, PM10, NO₂, O₃), 24-hour hourly projections, and 7-day extended forecasts are fetched dynamically on demand. Includes browser **Geolocation API** ("Locate Me") integration. |
 | **3. Search, filtering, and sorting** | **Search:** Live debounced geocoding search with autocomplete suggestions.<br>**Filtering:** By Continent/Region (Asia, Europe, Americas, Africa, Oceania), Air Quality category (Good, Moderate, Unhealthy), Weather Condition, and Saved Watchlist.<br>**Sorting:** Highest/Lowest Temperature, Cleanest Air, Strongest Wind, Humidity, and Alphabetical. |
 | **4. Handle loading, empty, and error states** | Shimmering CSS skeleton loader cards during fetch; clean empty state illustration with single-click "Reset All Filters" button; offline network detection banner; retry triggers; non-blocking toast notifications. |
-| **5. Responsive & clear information presentation** | Dual view modes (Minimalist Card Grid & High-Density Data Table), in-depth sliding analytics drawer, side-by-side comparison matrix, unit toggle (°C / °F), dark & light themes, and CSV/JSON export. |
+| **5. Responsive & clear information presentation** | Dual view modes (Minimalist Card Grid & High-Density Data Table), in-depth sliding analytics drawer, side-by-side comparison matrix, unit toggle (°C / °F), modern frosted glass design system, and CSV/JSON export. |
 
 ---
 
@@ -55,12 +55,11 @@ The interface is engineered with a **high-fidelity Glassmorphism design system**
 - **⚖️ Side-by-Side Comparison Matrix**: Benchmark up to 3 cities simultaneously across 12 scientific metrics.
 - **💾 Saved Watchlist**: Bookmark favorite locations with instant `localStorage` persistence.
 - **🔄 Dual Presentation Views**: Toggle seamlessly between responsive Card Grid view and compact Data Table view.
-- **🌡️ Unit & Theme Customization**: Instant switching between Celsius (°C, km/h) and Fahrenheit (°F, mph), plus Dark and Light modes.
+- **🌡️ Unit Customization**: Instant switching between Celsius (°C, km/h) and Fahrenheit (°F, mph) with persistent state.
 - **📥 Open Data Export**: Download displayed datasets with one click as `.csv` or `.json`.
 - **⌨️ Keyboard Shortcuts**:
   - `/` &rarr; Focus search bar
   - `Esc` &rarr; Close any open drawer or modal
-  - `T` &rarr; Toggle Dark / Light theme
   - `U` &rarr; Toggle Celsius / Fahrenheit
 
 ---
@@ -73,7 +72,7 @@ d:/ASEP/GDG pre interview task/
 ├── package.json                 # Project configuration & npm scripts
 ├── vite.config.js               # Dev server and build configuration (relative base)
 ├── styles/
-│   ├── main.css                 # Design tokens, themes (dark/light), typography, reset
+│   ├── main.css                 # Design tokens, frosted glass engine, custom scrollbars, reset
 │   └── components.css           # Cards, table, search dropdown, drawer, compare modal
 └── src/
     ├── main.js                  # Main controller, event routing, bootstrap

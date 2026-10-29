@@ -82,37 +82,6 @@
   --accent-secondary: #6366f1;
 }
 
-/* Optional Dark Glass Mode */
-[data-theme='dark'] {
-  --bg-app: radial-gradient(at 0% 0%, #0c1a30 0px, transparent 50%),
-            radial-gradient(at 100% 0%, #1e1145 0px, transparent 50%),
-            radial-gradient(at 100% 100%, #062820 0px, transparent 50%),
-            radial-gradient(at 0% 100%, #291a05 0px, transparent 50%),
-            #0b0f19;
-
-  --glass-bg: rgba(17, 24, 39, 0.68);
-  --glass-bg-card: rgba(17, 24, 39, 0.74);
-  --glass-bg-hover: rgba(30, 41, 59, 0.88);
-  --glass-bg-subtle: rgba(15, 23, 42, 0.55);
-  --glass-bg-input: rgba(15, 23, 42, 0.65);
-  --glass-bg-active: rgba(30, 41, 59, 0.95);
-  --glass-bg-pill: rgba(255, 255, 255, 0.08);
-
-  --glass-border: rgba(255, 255, 255, 0.14);
-  --glass-border-subtle: rgba(255, 255, 255, 0.08);
-  --glass-border-strong: rgba(255, 255, 255, 0.22);
-
-  --glass-shadow-sm: 0 4px 20px 0 rgba(0, 0, 0, 0.35), inset 0 1px 1px 0 rgba(255, 255, 255, 0.12);
-  --glass-shadow-md: 0 8px 32px 0 rgba(0, 0, 0, 0.45), inset 0 1px 1px 0 rgba(255, 255, 255, 0.16);
-  --glass-shadow-lg: 0 16px 48px 0 rgba(0, 0, 0, 0.6), inset 0 1px 2px 0 rgba(255, 255, 255, 0.2);
-  --glass-shadow-hover: 0 16px 40px 0 rgba(2, 132, 199, 0.32), inset 0 1px 2px 0 rgba(255, 255, 255, 0.25);
-  --glass-shadow-drawer: -14px 0 44px 0 rgba(0, 0, 0, 0.65), inset 1px 0 1px 0 rgba(255, 255, 255, 0.15);
-
-  --text-primary: #f8fafc;
-  --text-secondary: #cbd5e1;
-  --text-muted: #94a3b8;
-}
-
 /* --------------------------------------------------------------------------
    CSS Reset & Base Rules
    -------------------------------------------------------------------------- */
@@ -345,10 +314,6 @@ button:focus-visible, input:focus-visible, select:focus-visible {
 
 .brand-wrap:hover .brand-logo-img {
   transform: scale(1.03);
-}
-
-[data-theme='dark'] .brand-logo-img {
-  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.35));
 }
 
 .brand-badge {

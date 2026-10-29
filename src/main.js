@@ -1,5 +1,5 @@
 /**
- * TerraPulse — Main Application Controller
+ * WeatherGo — Main Application Controller
  * Bootstraps state, API orchestration, event handling, and UI rendering
  */
 
