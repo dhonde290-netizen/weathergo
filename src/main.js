@@ -372,14 +372,18 @@ function setupEventListeners() {
     store.openCompareModal();
   });
 
-  // GDG Info Nav Button & Footer Link
-  elements.btnNavInfo.addEventListener('click', () => {
-    store.openInfoModal();
-  });
-  elements.footerLinkAbout.addEventListener('click', e => {
-    e.preventDefault();
-    store.openInfoModal();
-  });
+  // GDG Info Nav Button (if present) & Footer Link
+  if (elements.btnNavInfo) {
+    elements.btnNavInfo.addEventListener('click', () => {
+      store.openInfoModal();
+    });
+  }
+  if (elements.footerLinkAbout) {
+    elements.footerLinkAbout.addEventListener('click', e => {
+      e.preventDefault();
+      store.openInfoModal();
+    });
+  }
 
   // Export Buttons
   elements.btnExportCsv.addEventListener('click', () => {
