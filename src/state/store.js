@@ -4,7 +4,6 @@
  */
 
 const STORAGE_KEYS = {
-  THEME: 'terrapulse_theme',
   UNIT: 'terrapulse_unit',
   FAVORITES: 'terrapulse_favorites'
 };
@@ -14,8 +13,6 @@ class Store {
     this.listeners = new Set();
     
     // Load persisted preferences
-    const savedTheme = localStorage.getItem(STORAGE_KEYS.THEME) || 
-      (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
     const savedUnit = localStorage.getItem(STORAGE_KEYS.UNIT) || 'C';
     let savedFavorites = [];
     try {
@@ -36,7 +33,6 @@ class Store {
       sortBy: 'temp-desc',
       viewMode: 'grid', // 'grid' | 'table'
       unit: savedUnit, // 'C' | 'F'
-      theme: savedTheme, // 'dark' | 'light'
       favorites: new Set(savedFavorites),
       onlyFavorites: false,
       activeModalCity: null,
@@ -65,17 +61,6 @@ class Store {
   setState(partialState) {
     this.state = { ...this.state, ...partialState };
     this.notify();
-  }
-
-  setTheme(theme) {
-    localStorage.setItem(STORAGE_KEYS.THEME, theme);
-    document.documentElement.setAttribute('data-theme', theme);
-    this.setState({ theme });
-  }
-
-  toggleTheme() {
-    const nextTheme = this.state.theme === 'dark' ? 'light' : 'dark';
-    this.setTheme(nextTheme);
   }
 
   setUnit(unit) {

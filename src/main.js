@@ -33,9 +33,6 @@ const elements = {
   btnNavCompare: document.getElementById('nav-btn-compare'),
   compareCountPill: document.getElementById('compare-count-pill'),
   btnNavUnit: document.getElementById('nav-btn-unit'),
-  btnNavTheme: document.getElementById('nav-btn-theme'),
-  themeIconDark: document.getElementById('theme-icon-dark'),
-  themeIconLight: document.getElementById('theme-icon-light'),
   btnNavInfo: document.getElementById('nav-btn-info'),
   footerLinkAbout: document.getElementById('footer-link-about'),
   btnExportCsv: document.getElementById('btn-export-csv'),
@@ -55,7 +52,7 @@ let searchDebounceTimer = null;
  * Initializes the application
  */
 async function init() {
-  setupThemeAndUnit();
+  setupUnit();
   setupEventListeners();
   setupNetworkListeners();
 
@@ -67,23 +64,11 @@ async function init() {
 }
 
 /**
- * Sync initial theme and unit from store
+ * Sync initial unit from store
  */
-function setupThemeAndUnit() {
-  const { theme, unit } = store.getState();
-  document.documentElement.setAttribute('data-theme', theme);
-  updateThemeIcons(theme);
+function setupUnit() {
+  const { unit } = store.getState();
   updateUnitButton(unit);
-}
-
-function updateThemeIcons(theme) {
-  if (theme === 'light') {
-    elements.themeIconDark.style.display = 'none';
-    elements.themeIconLight.style.display = 'block';
-  } else {
-    elements.themeIconDark.style.display = 'block';
-    elements.themeIconLight.style.display = 'none';
-  }
 }
 
 function updateUnitButton(unit) {
@@ -323,12 +308,6 @@ function setupEventListeners() {
   elements.btnNavUnit.addEventListener('click', () => {
     store.toggleUnit();
     updateUnitButton(store.getState().unit);
-  });
-
-  // Theme Toggle
-  elements.btnNavTheme.addEventListener('click', () => {
-    store.toggleTheme();
-    updateThemeIcons(store.getState().theme);
   });
 
   // Compare Nav Button
@@ -588,12 +567,6 @@ function handleKeyboardShortcuts(e) {
   if (e.key === '/' && document.activeElement !== elements.mainSearchInput) {
     e.preventDefault();
     elements.mainSearchInput.focus();
-  }
-
-  // "T" or "t": Toggle theme when not inside an input
-  if ((e.key === 't' || e.key === 'T') && document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'SELECT') {
-    store.toggleTheme();
-    updateThemeIcons(store.getState().theme);
   }
 
   // "U" or "u": Toggle unit when not inside an input

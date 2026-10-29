@@ -52,7 +52,7 @@ export function renderInfoModal() {
                   <strong>4. Robust State Handling:</strong> Shimmering skeleton loaders, graceful empty state recovery, error toasts with retry actions, and offline network listeners.
                 </li>
                 <li>
-                  <strong>5. Responsive & Minimalistic UI:</strong> Custom CSS design system, dark/light theme switching, side-by-side comparison matrix, interactive SVG trend sparklines, and CSV/JSON export.
+                  <strong>5. Responsive & Minimalistic UI:</strong> Clean and modern minimalist CSS design system, side-by-side comparison matrix, interactive SVG trend sparklines, and CSV/JSON export.
                 </li>
               </ul>
             </section>
@@ -80,7 +80,6 @@ export function renderInfoModal() {
               <div class="shortcuts-list">
                 <span class="shortcut-tag"><kbd>/</kbd> Focus search</span>
                 <span class="shortcut-tag"><kbd>Esc</kbd> Close modal</span>
-                <span class="shortcut-tag"><kbd>T</kbd> Toggle theme</span>
                 <span class="shortcut-tag"><kbd>U</kbd> Toggle °C / °F</span>
               </div>
             </section>
